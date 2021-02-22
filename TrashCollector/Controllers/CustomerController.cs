@@ -53,5 +53,20 @@ namespace TrashCollector.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+        //Get:
+        public ActionResult ChangePickupDay(int id)
+        {
+            var customerService = _context.Customers.Find(id);
+            return View(customerService);
+        }
+        //Post 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangePickupDay(Customer customer)
+        {
+            _context.Customers.Update(customer);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
