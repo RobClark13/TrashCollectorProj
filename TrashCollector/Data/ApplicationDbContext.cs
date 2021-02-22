@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using TrashCollector.Models;
 
 namespace TrashCollector.Data
 {
@@ -11,8 +12,10 @@ namespace TrashCollector.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
-        { }
-
+        { 
+        }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Employee> Employees { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
