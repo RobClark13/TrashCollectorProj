@@ -38,46 +38,20 @@ namespace TrashCollector.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: HomeController1/Edit/5
-        public ActionResult Edit(int id)
+       //Get:
+       public ActionResult SuspendService(int id)
         {
-            return View();
+            var customerService = _context.Customers.Find(id);
+            return View(customerService);
         }
-
-        // POST: HomeController1/Edit/5
+        //Post 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult SuspendService(Customer customer)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: HomeController1/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: HomeController1/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _context.Customers.Update(customer);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
