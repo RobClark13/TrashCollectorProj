@@ -16,23 +16,12 @@ namespace TrashCollector.Controllers
         {
             _context = context;
         }
-        // GET: HomeController1
+        // GET: CustomerController
         public ActionResult Index()
         {
             
             return View();
         }
-
-        // GET: HomeController1/Details/5
-        public ActionResult Details(int id)
-        {
-            
-            {
-                return Create();
-            }
-            return View();
-        }
-
         // GET: HomeController1/Create
         public ActionResult Create()
         {
@@ -42,16 +31,11 @@ namespace TrashCollector.Controllers
         // POST: HomeController1/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Customer customer)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: HomeController1/Edit/5
