@@ -20,6 +20,7 @@ namespace TrashCollector.Models
         public DateTime? SuspendServiceStart { get; set; }
         public DateTime? SuspendServiceEnd { get; set; }
         public DateTime? AdditionalPickupDay { get; set; }
+        public bool PickupConfirm { get; set; }
         public int? BalanceDue { get; set; }
         [ForeignKey("IdentityUser")]
         public string IdentityUserID { get; set; }

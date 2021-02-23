@@ -36,16 +36,17 @@
                 @Html.DisplayNameFor(model => model.AdditionalPickupDay)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BalanceDue)
+                @Html.DisplayNameFor(model => model.PickupConfirm)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdentityUser)
+                @Html.DisplayNameFor(model => model.BalanceDue)
             </th>
+            
             <th></th>
         </tr>
     </thead>
     <tbody>
-            @foreach (var item in Model) {
+@foreach (var item in Model) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.FirstName)
@@ -72,12 +73,16 @@
                 @Html.DisplayFor(modelItem => item.AdditionalPickupDay)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.BalanceDue)
+                @Html.DisplayFor(modelItem => item.PickupConfirm)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdentityUser.Id)
+                @Html.DisplayFor(modelItem => item.BalanceDue)
             </td>
-          
+           
+            <td>
+                <a asp-action="Confirm" asp-route-id="@item.Id">Confirm Pickup</a> |
+                <a asp-action="SeeMap" asp-route-id="@item.Id">SeeMap</a>
+            </td>
         </tr>
 }
     </tbody>
