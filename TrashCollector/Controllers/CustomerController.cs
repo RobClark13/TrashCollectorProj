@@ -45,8 +45,9 @@ namespace TrashCollector.Controllers
        //Get:
        public ActionResult SuspendService(int id)
         {
-            var customerService = _context.Customers.Find(id);
-            return View(customerService);
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = _context.Customers.Where(c => c.IdentityUserID == userId).SingleOrDefault();
+            return View(customer);
         }
         //Post 
         [HttpPost]
@@ -60,8 +61,9 @@ namespace TrashCollector.Controllers
         //Get:
         public ActionResult ChangePickupDay(int id)
         {
-            var customerService = _context.Customers.Find(id);
-            return View(customerService);
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = _context.Customers.Where(c => c.IdentityUserID == userId).SingleOrDefault();
+            return View(customer);
         }
         //Post 
         [HttpPost]

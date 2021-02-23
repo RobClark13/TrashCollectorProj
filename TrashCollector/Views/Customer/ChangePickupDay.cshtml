@@ -14,13 +14,20 @@
         <form asp-action="ChangePickupDay">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
-            
+            <input type="hidden" asp-for="FirstName" />
+            <input type="hidden" asp-for="LastName" />
+            <input type="hidden" asp-for="Address" />
+            <input type="hidden" asp-for="ZipCode" />
+            <input type="hidden" asp-for="SuspendServiceStart" />
+            <input type="hidden" asp-for="SuspendServiceEnd" />
+            <input type="hidden" asp-for="AdditionalPickupDay" />
+            <input type="hidden" asp-for="BalanceDue" />
+            <input type="hidden" asp-for="IdentityUserID" />
             <div class="form-group">
                 <label asp-for="PickupDay" class="control-label"></label>
                 <input asp-for="PickupDay" class="form-control" />
                 <span asp-validation-for="PickupDay" class="text-danger"></span>
             </div>
-            
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
