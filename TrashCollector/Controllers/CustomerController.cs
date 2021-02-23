@@ -80,5 +80,21 @@ namespace TrashCollector.Controllers
             var customer = _context.Customers.Where(c => c.IdentityUserID == userId).SingleOrDefault();
             return View(customer);
         }
+        //Get:
+        public ActionResult AddPickupDay(int id)
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = _context.Customers.Where(c => c.IdentityUserID == userId).SingleOrDefault();
+            return View(customer);
+        }
+        //Post 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddPickupDay(Customer customer)
+        {
+            _context.Customers.Update(customer);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
