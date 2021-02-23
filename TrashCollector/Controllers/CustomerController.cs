@@ -22,6 +22,10 @@ namespace TrashCollector.Controllers
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var customer = _context.Customers.Where(c => c.IdentityUserID == userId).SingleOrDefault();
+            if (customer == null)
+            {
+               return RedirectToAction("Create");
+            }
             return View(customer);
         }
         // GET: HomeController1/Create
