@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using TrashCollector.Data;
 using TrashCollector.Models;
@@ -19,8 +20,9 @@ namespace TrashCollector.Controllers
         // GET: CustomerController
         public ActionResult Index()
         {
-            
-            return View();
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = _context.Customers.Where(c => c.IdentityUserID == userId).SingleOrDefault();
+            return View(customer);
         }
         // GET: HomeController1/Create
         public ActionResult Create()
@@ -33,6 +35,8 @@ namespace TrashCollector.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Customer customer)
         {
+            var userid = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            customer.IdentityUserID = userid;
             _context.Customers.Add(customer);
             _context.SaveChanges();
             return RedirectToAction("Index");
@@ -67,6 +71,12 @@ namespace TrashCollector.Controllers
             _context.Customers.Update(customer);
             _context.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public ActionResult ViewBalance()
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = _context.Customers.Where(c => c.IdentityUserID == userId).SingleOrDefault();
+            return View(customer);
         }
     }
 }

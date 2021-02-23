@@ -10,7 +10,7 @@ using TrashCollector.Data;
 namespace TrashCollector.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210222175133_init")]
+    [Migration("20210222214203_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,15 +50,15 @@ namespace TrashCollector.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ce0b35e5-32a3-4ee7-8270-309d8377cc30",
-                            ConcurrencyStamp = "be476a03-149f-426b-9b7f-524b9a8a9c81",
+                            Id = "1078b590-52e3-458b-b233-7c7b89a978b2",
+                            ConcurrencyStamp = "5187da60-e71f-45cf-b996-021c531c455b",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "bf19126c-aeb4-4bdc-b5f7-e613a953952a",
-                            ConcurrencyStamp = "edf48c94-5f6a-4562-b990-f20686d392d0",
+                            Id = "def34c29-ee53-42a0-b679-906691b33ec1",
+                            ConcurrencyStamp = "1a5d6cb6-7a4b-4f6d-983e-4fdad9d1197f",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         });
@@ -240,13 +240,13 @@ namespace TrashCollector.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("AdditionalPickupDay")
+                    b.Property<DateTime?>("AdditionalPickupDay")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("BalanceDue")
+                    b.Property<int?>("BalanceDue")
                         .HasColumnType("int");
 
                     b.Property<string>("FirstName")
@@ -261,10 +261,10 @@ namespace TrashCollector.Migrations
                     b.Property<string>("PickupDay")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("SuspendServiceEnd")
+                    b.Property<DateTime?>("SuspendServiceEnd")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("SuspendServiceStart")
+                    b.Property<DateTime?>("SuspendServiceStart")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("ZipCode")

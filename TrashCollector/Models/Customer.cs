@@ -17,10 +17,10 @@ namespace TrashCollector.Models
         public string Address { get; set; }
         public int ZipCode { get; set; }
         public string PickupDay { get; set; }
-        public DateTime SuspendServiceStart { get; set; }
-        public DateTime SuspendServiceEnd { get; set; }
-        public DateTime AdditionalPickupDay { get; set; }
-        public int BalanceDue { get; set; }
+        public DateTime? SuspendServiceStart { get; set; }
+        public DateTime? SuspendServiceEnd { get; set; }
+        public DateTime? AdditionalPickupDay { get; set; }
+        public int? BalanceDue { get; set; }
         [ForeignKey("IdentityUser")]
         public string IdentityUserID { get; set; }
         public IdentityUser IdentityUser { get; set; }
