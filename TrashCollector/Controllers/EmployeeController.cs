@@ -47,7 +47,44 @@ namespace TrashCollector.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+        // GET: HomeController1/Create
+        public ActionResult Confirm(int id)
+        {
+            var confirmCustomer = _context.Customers.Find(id);
+            return View(confirmCustomer);
+        }
 
+        // POST: HomeController1/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Confirm(Customer customer)
+        {
+            var customerConfirmed = _context.Customers.SingleOrDefault(mbox => mbox.Id == customer.Id);
+            customerConfirmed.BalanceDue += 10;
+            customerConfirmed.PickupConfirm = true;
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // GET: HomeController1/Create
+        public ActionResult ListOfCustByDay(string sortOrder, string searchString)
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var employee = _context.Employees.Where(c => c.IdentityUserID == userId).SingleOrDefault();
+            var customers = _context.Customers.Where(c => c.ZipCode == employee.ZipCode);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                customers = customers.Where(c => c.PickupDay.Contains(searchString));
+            }
+            return View(customers);
+        }
+        public ActionResult SeeMap(int id)
+        {
+            var custAddress = _context.Customers.Find(id);
+            return View();
+        }
+
+       
 
 
 

@@ -1,0 +1,47 @@
+﻿@model TrashCollector.Models.Customer
+
+@{
+    ViewData["Title"] = "Confirm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Confirm</h1>
+
+<h4>Customer</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Confirm">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="FirstName" />
+            <input type="hidden" asp-for="LastName" />
+            <input type="hidden" asp-for="Address" />
+            <input type="hidden" asp-for="ZipCode" />
+            <input type="hidden" asp-for="PickupDay" />
+            <input type="hidden" asp-for="SuspendServiceStart" />
+            <input type="hidden" asp-for="SuspendServiceEnd" />
+            <input type="hidden" asp-for="AdditionalPickupDay" />
+            <input type="hidden" asp-for="BalanceDue" />
+            <input type="hidden" asp-for="IdentityUserID" />
+
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="PickupConfirm" /> @Html.DisplayNameFor(model => model.PickupConfirm)
+                </label>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
