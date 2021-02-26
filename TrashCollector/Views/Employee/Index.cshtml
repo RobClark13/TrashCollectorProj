@@ -7,7 +7,10 @@
 
 <h1>Index</h1>
 
-
+<p>
+    <a asp-action="Index">Today's Pickups</a>|
+    <a asp-action="ListOfCustByDay">See Customer's By Day</a>
+</p>
 <table class="table">
     <thead>
         <tr>
@@ -80,8 +83,8 @@
             </td>
            
             <td>
-                <a asp-action="Confirm" asp-route-id="@item.Id">Confirm Pickup</a> |
-                <a asp-action="SeeMap" asp-route-id="@item.Id">SeeMap</a>
+                <a asp-action="Confirm" asp-route-id="@item.Id">Confirm Pickup</a>
+                
             </td>
         </tr>
 }

@@ -5,8 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>ListOfCustByDay</h1>
-
+<h1>List Of Customers By Day</h1>
+<p>
+    <a asp-action="Index">Today's Pickups</a>|
+    <a asp-action="ListOfCustByDay">See Customer's By Day</a>
+</p>
 
 @using (Html.BeginForm())
 {
@@ -34,11 +37,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.PickupDay)
             </th>
-
-            <th>
-                @Html.DisplayNameFor(model => model.AdditionalPickupDay)
-            </th>
-
             <th></th>
         </tr>
     </thead>
@@ -60,14 +58,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PickupDay)
-
-                    @Html.DisplayFor(modelItem => item.AdditionalPickupDay)
-                </td>
-
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>
         }

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using TrashCollector.Data;
 using TrashCollector.Models;
 
+
 namespace TrashCollector.Controllers
 {
     public class EmployeeController : Controller
@@ -27,7 +28,9 @@ namespace TrashCollector.Controllers
             {
                 return RedirectToAction("Create");
             }
-            var customers = _context.Customers.Where(c => c.ZipCode == employee.ZipCode);
+            string today = System.DateTime.Now.DayOfWeek.ToString();
+           
+            var customers = _context.Customers.Where(c => c.ZipCode == employee.ZipCode && c.PickupDay == today);
             return View(customers);
         }
         // GET: HomeController1/Create
@@ -78,11 +81,10 @@ namespace TrashCollector.Controllers
             }
             return View(customers);
         }
-        public ActionResult SeeMap(int id)
-        {
-            var custAddress = _context.Customers.Find(id);
-            return View();
-        }
+        //public ActionResult SeeMap(int id)
+        //{
+
+        //}
 
        
 
